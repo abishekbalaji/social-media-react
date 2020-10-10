@@ -1,9 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
-
-export const addUser = ({ email, user, password }) => ({
+export const addUser = ({ id, email, user, password }) => ({
   type: "ADD_USER",
   details: {
-    id: uuidv4(),
+    id,
     email,
     user,
     password,

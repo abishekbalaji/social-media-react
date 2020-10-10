@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 import { addUser } from "../actions/signup";
+import { addLoginInfo } from "../actions/login";
 
 class SignUpPage extends React.Component {
   state = {
@@ -63,11 +65,20 @@ class SignUpPage extends React.Component {
         error: "User name already taken!",
       }));
     } else {
+      const id = uuidv4();
       this.setState(() => ({
         error: "",
       }));
       this.props.dispatch(
-        addUser({ email: this.state.email, user: this.state.user, password })
+        addUser({
+          id,
+          email: this.state.email,
+          user: this.state.user,
+          password,
+        })
+      );
+      this.props.dispatch(
+        addLoginInfo({ id, user: this.state.user, password })
       );
       this.props.history.push("/");
     }
