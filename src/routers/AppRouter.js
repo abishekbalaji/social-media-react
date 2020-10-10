@@ -16,3 +16,5 @@ const AppRouter = () => (
     </Switch>
   </BrowserRouter>
 );
+
+export default AppRouter;
