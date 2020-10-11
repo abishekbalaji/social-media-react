@@ -1,4 +1,6 @@
-const signUpDefaultState = [];
+const signUpDefaultState = [
+  { id: "1", email: "admin@gmail.com", user: "admin", password: "password" },
+];
 
 export default (state = signUpDefaultState, action) => {
   switch (action.type) {

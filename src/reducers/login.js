@@ -1,6 +1,6 @@
 const loginDefaultState = [
   {
-    id: 1,
+    id: "1",
     user: "admin",
     password: "password",
   },

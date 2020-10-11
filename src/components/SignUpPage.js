@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-import { addUser } from "../actions/signup";
+import { addUserSignUp } from "../actions/signup";
 import { addLoginInfo } from "../actions/login";
 
 class SignUpPage extends React.Component {
@@ -46,9 +46,10 @@ class SignUpPage extends React.Component {
     e.preventDefault();
     const password = this.state.password;
     const confirm_password = this.state.confirm_password;
-    const isUniqueEmail = this.props.users.every(
-      (user) => user.email !== this.state.email
-    );
+    const isUniqueEmail = this.props.users.every((user) => {
+      console.log("unique email checking", user);
+      return user.email !== this.state.email;
+    });
     const isUniqueUserName = this.props.users.every(
       (user) => user.user !== this.state.user
     );
@@ -70,7 +71,7 @@ class SignUpPage extends React.Component {
         error: "",
       }));
       this.props.dispatch(
-        addUser({
+        addUserSignUp({
           id,
           email: this.state.email,
           user: this.state.user,

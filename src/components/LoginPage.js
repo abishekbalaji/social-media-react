@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { addUserOnline } from "../actions/online";
+
 class LoginPage extends React.Component {
   state = {
     user: "",
@@ -24,10 +26,10 @@ class LoginPage extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const match = this.props.login_creds.find(
+    const currentUser = this.props.login_creds.find(
       (login_cred) => login_cred.user === this.state.user
     );
-    if (!match || match.password !== this.state.password) {
+    if (!currentUser || currentUser.password !== this.state.password) {
       this.setState(() => ({
         error: "Wrong Credentials!",
       }));
@@ -35,7 +37,8 @@ class LoginPage extends React.Component {
       this.setState(() => ({
         error: "",
       }));
-      this.props.history.push("/");
+      this.props.dispatch(addUserOnline(currentUser.id));
+      this.props.history.push(`/newsfeed/${currentUser.id}`);
     }
   };
   render() {

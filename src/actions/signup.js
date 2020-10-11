@@ -1,4 +1,4 @@
-export const addUser = ({ id, email, user, password }) => ({
+export const addUserSignUp = ({ id, email, user, password }) => ({
   type: "ADD_USER",
   details: {
     id,
